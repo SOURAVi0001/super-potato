@@ -10,11 +10,6 @@ services:
     rootDir: .
     buildCommand: npm install && npm run build --workspace=apps/server
     startCommand: npm run start:server
-    # Mount persistent storage for PDF salary slip uploads
-    disk:
-      name: lms-uploads
-      mountPath: /opt/render/project/src/apps/server/uploads
-      sizeGB: 1
     envVars:
       - key: PORT
         value: 10000
