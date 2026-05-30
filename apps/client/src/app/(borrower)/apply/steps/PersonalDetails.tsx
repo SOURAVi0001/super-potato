@@ -72,7 +72,7 @@ export default function PersonalDetails() {
         <h2 className="text-base font-bold text-slate-100 uppercase tracking-widest mb-1">
           Personal Details
         </h2>
-        <p className="text-xs text-slate-400">Step 2: Collect profile inputs for credit checks</p>
+        <p className="text-xs text-slate-400">Step 1: Collect profile inputs for credit checks</p>
       </div>
 
       {/* BRE failure alert panel */}

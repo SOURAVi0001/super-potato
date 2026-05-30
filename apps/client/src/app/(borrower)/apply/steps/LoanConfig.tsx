@@ -40,7 +40,7 @@ export default function LoanConfig() {
           <h2 className="text-base font-bold text-slate-100 uppercase tracking-widest mb-1">
             Configure Loan Request
           </h2>
-          <p className="text-xs text-slate-400">Step 4: Personalize principal amounts and tenure limits</p>
+          <p className="text-xs text-slate-400">Step 3: Personalize principal amounts and tenure limits</p>
         </div>
         <div className="bg-indigo-950/30 border border-indigo-800/40 text-indigo-400 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-lg shadow-[0_0_10px_rgba(99,102,241,0.1)]">
           Slip Uploaded
@@ -101,7 +101,7 @@ export default function LoanConfig() {
         <div className="pt-4 border-t border-slate-850 flex justify-between items-center gap-4">
           <Button
             variant="ghost"
-            onClick={() => setStep(3)}
+            onClick={() => setStep(2)}
             disabled={loading}
             className="text-xs"
           >

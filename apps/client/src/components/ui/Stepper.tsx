@@ -5,10 +5,9 @@ interface StepperProps {
 }
 
 const STEPS = [
-  { step: 1, label: 'Authentication' },
-  { step: 2, label: 'Personal Details' },
-  { step: 3, label: 'Salary Slip' },
-  { step: 4, label: 'Loan Configuration' },
+  { step: 1, label: 'Personal Details' },
+  { step: 2, label: 'Salary Slip' },
+  { step: 3, label: 'Loan Configuration' },
 ];
 
 export function Stepper({ currentStep }: StepperProps) {

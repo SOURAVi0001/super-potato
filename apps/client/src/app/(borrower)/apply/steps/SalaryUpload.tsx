@@ -26,7 +26,7 @@ export default function SalaryUpload() {
           <h2 className="text-base font-bold text-slate-100 uppercase tracking-widest mb-1">
             Upload Salary Slip
           </h2>
-          <p className="text-xs text-slate-400">Step 3: Upload recent financial slips to verify salary</p>
+          <p className="text-xs text-slate-400">Step 2: Upload recent financial slips to verify salary</p>
         </div>
         <div className="bg-emerald-950/30 border border-emerald-800/40 text-emerald-400 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-lg shadow-[0_0_10px_rgba(16,185,129,0.1)]">
           BRE Passed
@@ -38,7 +38,7 @@ export default function SalaryUpload() {
       <div className="pt-2 border-t border-slate-850 flex justify-start">
         <Button
           variant="ghost"
-          onClick={() => setStep(2)}
+          onClick={() => setStep(1)}
           disabled={loading}
           className="text-xs"
         >

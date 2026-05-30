@@ -80,11 +80,10 @@ export default function ApplyPage() {
   const renderStepComponent = () => {
     switch (step) {
       case 1:
-      case 2:
         return <PersonalDetails />;
-      case 3:
+      case 2:
         return <SalaryUpload />;
-      case 4:
+      case 3:
         return <LoanConfig />;
       default:
         return <PersonalDetails />;
