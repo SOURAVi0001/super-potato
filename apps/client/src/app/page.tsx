@@ -10,11 +10,10 @@ export default function RootPage() {
     router.replace('/login');
   }, [router]);
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950 text-slate-400">
+    <div className="min-h-screen flex items-center justify-center bg-[#faf9f7] text-stone-500">
       <div className="flex flex-col items-center gap-3">
-        <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-sm font-medium tracking-wide">Redirecting to platform portal...</p>
+        <div className="w-8 h-8 border-4 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-[13px] font-medium">Redirecting to platform portal...</p>
       </div>
     </div>
   );

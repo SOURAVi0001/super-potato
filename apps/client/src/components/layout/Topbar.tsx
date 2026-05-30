@@ -7,26 +7,26 @@ export function Topbar() {
   if (!user) return null;
 
   return (
-    <header className="h-16 border-b border-slate-800 bg-slate-950/40 backdrop-blur-xl px-6 flex justify-between items-center w-full sticky top-0 z-40">
+    <header className="h-12 bg-white border-b border-stone-200 px-6 flex justify-between items-center w-full sticky top-0 z-40">
       <div>
-        <h2 className="text-xs font-bold tracking-widest text-slate-400 uppercase">
-          Welcome Back
+        <h2 className="text-[13px] font-medium text-stone-850">
+          Welcome back, {user.fullName.split(' ')[0]}
         </h2>
       </div>
 
       <div className="flex items-center gap-4">
         <div className="text-right hidden sm:block">
-          <p className="text-xs font-bold text-slate-200">{user.fullName}</p>
-          <span className="text-[10px] text-slate-500 font-semibold">{user.email}</span>
+          <p className="text-[11px] font-medium text-stone-700">{user.fullName}</p>
+          <span className="text-[10px] text-stone-400 block leading-none">{user.email}</span>
         </div>
 
         <button
           onClick={logout}
           disabled={loading}
-          className="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-950/20 rounded-lg border border-slate-800 hover:border-rose-900/40 transition-all duration-300 disabled:opacity-50"
+          className="p-1.5 text-stone-500 hover:text-[#7a2e20] hover:bg-[#f5ebe8] rounded border border-stone-200 hover:border-[#d4a898] transition-colors duration-150 disabled:opacity-40"
           title="Sign out of portal"
         >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
           </svg>
         </button>
