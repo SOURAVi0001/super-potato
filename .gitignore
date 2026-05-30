@@ -1,0 +1,34 @@
+# Dependency folders
+node_modules/
+
+# Production builds
+.next/
+out/
+dist/
+build/
+
+# Local configuration files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Multer uploads directory (we only keep the uploads folder skeleton)
+apps/server/uploads/*
+!apps/server/uploads/.gitkeep
+
+# System and logs
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+
+# Docs
+docs/
+
+# Workspace state
+.vscode/
+.idea/
