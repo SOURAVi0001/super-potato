@@ -82,12 +82,12 @@ export function FileUpload({ onFileSelect, isLoading }: FileUploadProps) {
         onDragOver={handleDrag}
         onDragLeave={handleDrag}
         onDrop={handleDrop}
-        className={`w-full min-h-[220px] rounded-xl border-2 border-dashed flex flex-col items-center justify-center p-6 text-center transition-all duration-300 ${
+        className={`w-full min-h-[200px] rounded-lg border-2 border-dashed flex flex-col items-center justify-center p-6 text-center transition-all duration-150 ${
           dragActive
-            ? 'border-cyan-400 bg-cyan-950/10'
+            ? 'border-brand-400 bg-brand-50'
             : selectedFile
-            ? 'border-indigo-500 bg-indigo-950/10'
-            : 'border-slate-800 bg-slate-900/10 hover:border-slate-700'
+            ? 'border-brand-600 bg-brand-50/50'
+            : 'border-stone-200 bg-stone-50/50 hover:border-stone-300'
         }`}
       >
         <input
@@ -101,22 +101,23 @@ export function FileUpload({ onFileSelect, isLoading }: FileUploadProps) {
 
         {selectedFile ? (
           <div className="flex flex-col items-center gap-4">
-            <div className="w-12 h-12 bg-indigo-900/40 border border-indigo-700/60 rounded-xl flex items-center justify-center text-indigo-400">
+            <div className="w-12 h-12 bg-stone-100 border border-stone-200 rounded-lg flex items-center justify-center text-stone-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
             
-            <div className="flex flex-col gap-1">
-              <p className="text-sm font-semibold text-slate-100">{selectedFile.name}</p>
-              <p className="text-xs text-slate-400">{(selectedFile.size / (1024 * 1024)).toFixed(2)} MB</p>
+            <div className="flex flex-col gap-0.5">
+              <p className="text-sm font-medium text-stone-800">{selectedFile.name}</p>
+              <p className="text-xs text-stone-400">{(selectedFile.size / (1024 * 1024)).toFixed(2)} MB</p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <Button
-                variant="ghost"
+                variant="secondary"
                 onClick={() => setSelectedFile(null)}
                 disabled={isLoading}
+                className="text-xs"
               >
                 Reset
               </Button>
@@ -124,6 +125,7 @@ export function FileUpload({ onFileSelect, isLoading }: FileUploadProps) {
                 variant="primary"
                 isLoading={isLoading}
                 onClick={handleUploadSubmit}
+                className="text-xs"
               >
                 Upload & Continue
               </Button>
@@ -131,23 +133,23 @@ export function FileUpload({ onFileSelect, isLoading }: FileUploadProps) {
           </div>
         ) : (
           <div className="flex flex-col items-center gap-3 cursor-pointer" onClick={onButtonClick}>
-            <div className="w-12 h-12 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-200 transition-colors">
-              <svg className="w-6 h-6 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+            <div className="w-12 h-12 bg-white border border-stone-200 rounded-lg flex items-center justify-center text-stone-400 hover:text-stone-600 transition-colors shadow-card">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
               </svg>
             </div>
             <div>
-              <p className="text-sm font-semibold text-slate-200">
-                Drag and drop your salary slip, or <span className="text-indigo-400 underline hover:text-indigo-300">browse</span>
+              <p className="text-sm font-medium text-stone-800">
+                Drag and drop your salary slip, or <span className="text-brand-600 underline hover:text-brand-850">browse</span>
               </p>
-              <p className="text-xs text-slate-500 mt-1">Accepts PDF, JPG, or PNG (Max 5 MB)</p>
+              <p className="text-xs text-stone-400 mt-1">Accepts PDF, JPG, or PNG (Max 5 MB)</p>
             </div>
           </div>
         )}
       </div>
 
       {error && (
-        <p className="mt-3 text-xs text-rose-400 font-semibold tracking-wide text-center">{error}</p>
+        <p className="mt-3 text-xs text-[#7a2e20] font-semibold text-center">{error}</p>
       )}
     </div>
   );

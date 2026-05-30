@@ -6,15 +6,15 @@ interface BadgeProps {
 }
 
 export function Badge({ variant = 'primary', children }: BadgeProps) {
-  const baseStyles = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold tracking-wider uppercase border';
+  const baseStyles = 'inline-flex items-center px-2.5 py-0.5 rounded text-[11px] font-medium border transition-colors duration-150';
   
   const variants = {
-    primary: 'bg-indigo-950/40 text-indigo-400 border-indigo-800/60 glow-pulse-blue',
-    secondary: 'bg-slate-900/60 text-slate-400 border-slate-800',
-    success: 'bg-emerald-950/40 text-emerald-400 border-emerald-800/60 glow-pulse-green',
-    warning: 'bg-amber-950/40 text-amber-400 border-amber-800/60',
-    danger: 'bg-rose-950/40 text-rose-400 border-rose-800/60 glow-pulse-red',
-    info: 'bg-cyan-950/40 text-cyan-400 border-cyan-800/60 glow-pulse-teal',
+    primary: 'bg-brand-50 text-brand-600 border-brand-200',
+    secondary: 'bg-stone-100 text-stone-600 border-stone-200',
+    success: 'bg-[#edf3ec] text-[#2d5c2a] border-[#a8c8a4]',
+    warning: 'bg-[#f5f0e8] text-[#7a5c2e] border-[#d4b896]',
+    danger: 'bg-[#f5ebe8] text-[#7a2e20] border-[#d4a898]',
+    info: 'bg-[#eaeff5] text-[#1e3d5c] border-[#98b4cc]',
   };
 
   return (
