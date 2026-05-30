@@ -8,7 +8,7 @@ services:
     env: node
     plan: free
     rootDir: .
-    buildCommand: npm install && npm run build --workspace=apps/server
+    buildCommand: npm install --include=dev && npm run build --workspace=apps/server
     startCommand: npm run start:server
     envVars:
       - key: PORT
@@ -33,7 +33,7 @@ services:
     env: node
     plan: free
     rootDir: .
-    buildCommand: npm install && npm run build --workspace=apps/client
+    buildCommand: npm install --include=dev && npm run build --workspace=apps/client
     startCommand: npm run start:client
     envVars:
       - key: PORT
