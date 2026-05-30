@@ -1,5 +1,4 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/request';
+import { NextResponse, type NextRequest } from 'next/server';
 
 const PROTECTED_ROUTES: Record<string, string[]> = {
   '/sales':        ['SALES', 'ADMIN'],

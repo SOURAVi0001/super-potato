@@ -13,6 +13,7 @@ export default function BorrowerLayout({ children }: { children: React.ReactNode
   const { fetchMe } = useAuth();
   const [loading, setLoading] = useState(!user);
   const router = useRouter();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     async function restoreSession() {
@@ -33,10 +34,10 @@ export default function BorrowerLayout({ children }: { children: React.ReactNode
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-950 text-slate-400">
+      <div className="min-h-screen flex items-center justify-center bg-[#faf9f7] text-stone-500">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-xs uppercase tracking-widest font-bold text-slate-500">Syncing Borrower Session...</p>
+          <div className="w-8 h-8 border-4 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-xs uppercase tracking-widest font-bold text-stone-400">Syncing Borrower Session...</p>
         </div>
       </div>
     );
@@ -49,10 +50,10 @@ export default function BorrowerLayout({ children }: { children: React.ReactNode
   }
 
   return (
-    <div className="min-h-screen flex bg-slate-950 text-slate-100">
-      <Sidebar />
+    <div className="min-h-screen flex bg-[#faf9f7] text-stone-800">
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       <div className="flex-1 flex flex-col min-w-0">
-        <Topbar />
+        <Topbar onMenuClick={() => setIsSidebarOpen(true)} />
         <main className="flex-1 p-6 md:p-8 overflow-y-auto max-w-5xl w-full mx-auto">
           {children}
         </main>

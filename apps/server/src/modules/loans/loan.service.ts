@@ -34,7 +34,8 @@ export class LoanService {
     const loans = await Loan.find(query)
       .sort({ createdAt: -1 })
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .populate('applicationId');
 
     // Populate borrower details from the users collection
     const enrichedLoans = await Promise.all(
@@ -67,7 +68,7 @@ export class LoanService {
   }
 
   static async getLoanById(id: string) {
-    const loan = await Loan.findById(id);
+    const loan = await Loan.findById(id).populate('applicationId');
     if (!loan) {
       const error: any = new Error('Loan not found');
       error.statusCode = 404;

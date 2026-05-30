@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import useAuthStore from '../../store/authStore';
 import { UserRole } from '@lms/shared/src/types/user.types';
 
-export function Sidebar() {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const { user } = useAuthStore();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   if (!user) return null;
 
@@ -71,54 +86,100 @@ export function Sidebar() {
     addLink('/apply', 'Apply For Loan', applyIcon);
   }
 
+  const renderContent = () => (
+    <>
+      <div className="flex-1 flex flex-col justify-between">
+        <div>
+          {/* Brand Logo area */}
+          <div className="px-5 py-4 border-b border-stone-200 bg-stone-50/50">
+            <span className="text-[15px] font-medium text-stone-900 block tracking-tight">LMS Portal</span>
+            <span className="text-[11px] text-stone-400 block font-normal">Loan Management System</span>
+          </div>
+
+          {/* Links list */}
+          <nav className="p-3 flex flex-col gap-0.5">
+            {links.map((link) => {
+              const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={onClose}
+                  className={`flex items-center gap-2.5 px-2.5 py-2 rounded text-[13px] transition-all duration-100 ${
+                    isActive
+                      ? 'bg-stone-200 text-stone-900 font-medium'
+                      : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/50'
+                  }`}
+                >
+                  <span className={isActive ? 'text-brand-600' : 'text-stone-400'}>
+                    {link.icon}
+                  </span>
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* Footer Profile card */}
+        <div className="p-3 border-t border-stone-200 bg-stone-50/30">
+          <div className="flex items-center gap-2.5 p-2 bg-white rounded border border-stone-200 shadow-card">
+            <div className="w-8 h-8 rounded bg-stone-100 border border-stone-200 flex items-center justify-center font-medium text-brand-600 text-sm">
+              {user.fullName.charAt(0)}
+            </div>
+            <div className="overflow-hidden">
+              <h4 className="text-[12px] font-medium text-stone-800 truncate">{user.fullName}</h4>
+              <span className="text-[11px] font-normal text-stone-400 block truncate">
+                {user.role}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
   return (
-    <aside className="w-56 border-r border-stone-200 bg-stone-100 h-screen sticky top-0 flex flex-col justify-between shrink-0">
-      <div>
-        {/* Brand Logo area */}
-        <div className="px-5 py-4 border-b border-stone-200 bg-stone-50/50">
-          <span className="text-[15px] font-medium text-stone-900 block tracking-tight">LMS Portal</span>
-          <span className="text-[11px] text-stone-400 block font-normal">Loan Management System</span>
-        </div>
+    <>
+      {/* Desktop Sidebar (hidden on mobile, visible on md and up) */}
+      {!isMobile && (
+        <aside className="w-56 border-r border-stone-200 bg-stone-100 h-screen sticky top-0 flex flex-col justify-between shrink-0">
+          {renderContent()}
+        </aside>
+      )}
 
-        {/* Links list */}
-        <nav className="p-3 flex flex-col gap-0.5">
-          {links.map((link) => {
-            const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`flex items-center gap-2.5 px-2.5 py-2 rounded text-[13px] transition-all duration-100 ${
-                  isActive
-                    ? 'bg-stone-200 text-stone-900 font-medium'
-                    : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/50'
-                }`}
-              >
-                <span className={isActive ? 'text-brand-600' : 'text-stone-400'}>
-                  {link.icon}
-                </span>
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
-      </div>
+      {/* Mobile Drawer Backdrop */}
+      {isMobile && isOpen && (
+        <div
+          className="fixed inset-0 bg-stone-900/40 backdrop-blur-xs z-50 transition-opacity duration-200"
+          onClick={onClose}
+        />
+      )}
 
-      {/* Footer Profile card */}
-      <div className="p-3 border-t border-stone-200 bg-stone-50/30">
-        <div className="flex items-center gap-2.5 p-2 bg-white rounded border border-stone-200 shadow-card">
-          <div className="w-8 h-8 rounded bg-stone-100 border border-stone-200 flex items-center justify-center font-medium text-brand-600 text-sm">
-            {user.fullName.charAt(0)}
+      {/* Mobile Drawer Panel */}
+      {isMobile && (
+        <aside
+          className={`fixed top-0 bottom-0 left-0 w-56 border-r border-stone-200 bg-stone-100 z-50 flex flex-col justify-between transition-transform duration-200 ease-in-out ${
+            isOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          {/* Close Button */}
+          <div className="absolute top-3.5 right-3.5">
+            <button
+              onClick={onClose}
+              className="p-1 text-stone-500 hover:text-stone-700 hover:bg-stone-200/50 rounded focus:outline-none"
+              title="Close navigation menu"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
-          <div className="overflow-hidden">
-            <h4 className="text-[12px] font-medium text-stone-800 truncate">{user.fullName}</h4>
-            <span className="text-[11px] font-normal text-stone-400 block truncate">
-              {user.role}
-            </span>
-          </div>
-        </div>
-      </div>
-    </aside>
+
+          {renderContent()}
+        </aside>
+      )}
+    </>
   );
 }
 export default Sidebar;
