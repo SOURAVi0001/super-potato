@@ -8,21 +8,21 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, className = '', ...props }, ref) => {
     return (
-      <div className="w-full">
+      <div className="w-full flex flex-col gap-1">
         {label && (
-          <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+          <label className="text-[13px] text-stone-600 font-medium">
             {label}
           </label>
         )}
         <input
           ref={ref}
-          className={`w-full bg-slate-900/60 border border-slate-800 text-slate-100 placeholder-slate-500 rounded-lg px-4 py-2.5 text-sm transition-all duration-300 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 hover:border-slate-700 ${className} ${
-            error ? 'border-rose-500/70 focus:border-rose-500 focus:ring-rose-500/20' : ''
+          className={`w-full border border-stone-300 rounded bg-[#fdfcfa] text-stone-800 text-[14px] px-3 py-2 placeholder:text-stone-400 focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-600/15 transition-all duration-150 ${className} ${
+            error ? 'border-[#d4a898] focus:border-[#7a2e20] focus:ring-2 focus:ring-[#7a2e20]/10' : ''
           }`}
           {...props}
         />
         {error && (
-          <p className="mt-1.5 text-xs text-rose-400 font-semibold tracking-wide">{error}</p>
+          <p className="text-[12px] text-[#7a2e20] mt-0.5">{error}</p>
         )}
       </div>
     );
