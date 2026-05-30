@@ -1,0 +1,13 @@
+let inMemoryAccessToken: string | null = null;
+
+export function getAccessToken(): string | null {
+  return inMemoryAccessToken;
+}
+
+export function setAccessToken(token: string | null): void {
+  inMemoryAccessToken = token;
+}
+export default {
+  getAccessToken,
+  setAccessToken,
+};
