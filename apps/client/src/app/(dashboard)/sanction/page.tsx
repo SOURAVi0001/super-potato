@@ -80,25 +80,25 @@ export default function SanctionPage() {
       header: 'Borrower',
       accessor: (row: SanctionLoan) => (
         <div className="flex flex-col">
-          <span className="font-bold text-slate-100">{row.borrower?.fullName || 'Test Borrower'}</span>
-          <span className="text-[10px] text-slate-500 font-semibold">{row.borrower?.email}</span>
+          <span className="font-medium text-stone-900">{row.borrower?.fullName || 'Test Borrower'}</span>
+          <span className="text-[11px] text-stone-400 font-normal">{row.borrower?.email}</span>
         </div>
       ),
     },
     {
       header: 'Principal',
-      accessor: (row: SanctionLoan) => <span className="font-bold text-slate-100">Rs. {row.amount.toLocaleString('en-IN')}</span>,
+      accessor: (row: SanctionLoan) => <span className="font-medium text-stone-800">Rs. {row.amount.toLocaleString('en-IN')}</span>,
     },
     {
       header: 'Tenure',
-      accessor: (row: SanctionLoan) => <span className="font-semibold text-slate-400">{row.tenureDays} Days</span>,
+      accessor: (row: SanctionLoan) => <span className="font-normal text-stone-500">{row.tenureDays} Days</span>,
     },
     {
-      header: 'Repayment Sum',
-      accessor: (row: SanctionLoan) => <span className="font-extrabold text-cyan-400">Rs. {row.totalRepayment.toLocaleString('en-IN')}</span>,
+      header: 'Repayment sum',
+      accessor: (row: SanctionLoan) => <span className="font-medium text-stone-900">Rs. {row.totalRepayment.toLocaleString('en-IN')}</span>,
     },
     {
-      header: 'Salary Slip',
+      header: 'Salary slip',
       accessor: (row: SanctionLoan) => {
         // Fetch or guess static path from backend
         const slipPath = row.salarySlipUrl || `uploads/salary-slip-mock.pdf`;
@@ -109,12 +109,12 @@ export default function SanctionPage() {
             href={slipFullUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-xs font-semibold text-indigo-400 hover:text-indigo-300 underline gap-1"
+            className="inline-flex items-center text-[13px] font-medium text-brand-600 hover:text-brand-850 underline gap-1"
           >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-            View Document
+            View document
           </a>
         );
       },
@@ -135,7 +135,7 @@ export default function SanctionPage() {
             Reject
           </Button>
           <Button
-            variant="accent"
+            variant="primary"
             onClick={() => handleApprove(row.id)}
             className="px-3 py-1.5 text-xs"
           >
@@ -147,18 +147,16 @@ export default function SanctionPage() {
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-lg font-bold text-slate-100 uppercase tracking-widest">
-            Loan Sanction Board
-          </h1>
-          <p className="text-xs text-slate-400">Review pending borrower loan applications, verify salary slips, and approve credit lines</p>
-        </div>
+    <div className="space-y-4">
+      <div>
+        <h1 className="text-[15px] font-medium text-stone-900">
+          Loan sanction board
+        </h1>
+        <p className="text-[12px] text-stone-400">Review pending borrower loan applications, verify salary slips, and approve credit lines</p>
       </div>
 
       {error && (
-        <div className="p-4 bg-rose-950/40 border border-rose-900/40 rounded-lg text-xs font-semibold text-rose-400 tracking-wide">
+        <div className="p-3 rounded bg-[#f5ebe8] border border-[#d4a898] text-[12px] font-medium text-[#7a2e20]">
           {error}
         </div>
       )}
@@ -173,8 +171,8 @@ export default function SanctionPage() {
 
       {/* Pagination controls */}
       {totalPages > 1 && (
-        <div className="flex justify-between items-center bg-slate-900/20 px-6 py-4 rounded-xl border border-slate-800">
-          <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">
+        <div className="flex justify-between items-center bg-stone-50 border border-stone-200 px-4 py-3 rounded-lg shadow-card">
+          <span className="text-[11px] font-medium text-stone-500">
             Page {page} of {totalPages}
           </span>
           <div className="flex gap-2">

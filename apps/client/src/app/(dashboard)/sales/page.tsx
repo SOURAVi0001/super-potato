@@ -36,24 +36,24 @@ export default function SalesPage() {
 
   const columns = [
     {
-      header: 'Borrower Name',
+      header: 'Borrower name',
       accessor: (row: Lead) => (
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-indigo-400 text-xs">
+          <div className="w-8 h-8 rounded bg-stone-100 border border-stone-200 flex items-center justify-center font-medium text-brand-600 text-xs">
             {row.fullName.charAt(0)}
           </div>
-          <span className="font-bold text-slate-100">{row.fullName}</span>
+          <span className="font-medium text-stone-900">{row.fullName}</span>
         </div>
       ),
     },
     {
-      header: 'Email Address',
-      accessor: (row: Lead) => <span className="font-semibold text-slate-400">{row.email}</span>,
+      header: 'Email address',
+      accessor: (row: Lead) => <span className="font-normal text-stone-500">{row.email}</span>,
     },
     {
-      header: 'Registration Date',
+      header: 'Registration date',
       accessor: (row: Lead) => (
-        <span className="text-slate-400 font-medium">
+        <span className="text-stone-500 font-normal">
           {new Date(row.createdAt).toLocaleDateString('en-IN', {
             day: '2-digit',
             month: 'short',
@@ -63,7 +63,7 @@ export default function SalesPage() {
       ),
     },
     {
-      header: 'Wizard Progress',
+      header: 'Wizard progress',
       accessor: (row: Lead) => {
         if (!row.applicationStatus) {
           return <Badge variant="secondary">Not Started</Badge>;
@@ -77,18 +77,16 @@ export default function SalesPage() {
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-lg font-bold text-slate-100 uppercase tracking-widest">
-            Sales Lead Board
-          </h1>
-          <p className="text-xs text-slate-400">Track registered borrowers who have not finished submissions</p>
-        </div>
+    <div className="space-y-4">
+      <div>
+        <h1 className="text-[15px] font-medium text-stone-900">
+          Sales lead board
+        </h1>
+        <p className="text-[12px] text-stone-400">Track registered borrowers who have not finished submissions</p>
       </div>
 
       {error && (
-        <div className="p-4 bg-rose-950/40 border border-rose-900/40 rounded-lg text-xs font-semibold text-rose-400 tracking-wide">
+        <div className="p-3 rounded bg-[#f5ebe8] border border-[#d4a898] text-[12px] font-medium text-[#7a2e20]">
           {error}
         </div>
       )}
@@ -103,8 +101,8 @@ export default function SalesPage() {
 
       {/* Pagination controls */}
       {totalPages > 1 && (
-        <div className="flex justify-between items-center bg-slate-900/20 px-6 py-4 rounded-xl border border-slate-800">
-          <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">
+        <div className="flex justify-between items-center bg-stone-50 border border-stone-200 px-4 py-3 rounded-lg shadow-card">
+          <span className="text-[11px] font-medium text-stone-500">
             Page {page} of {totalPages}
           </span>
           <div className="flex gap-2">

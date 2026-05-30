@@ -55,23 +55,23 @@ export default function DisbursementPage() {
       header: 'Borrower',
       accessor: (row: ApprovedLoan) => (
         <div className="flex flex-col">
-          <span className="font-bold text-slate-100">{row.borrower?.fullName || 'Test Borrower'}</span>
-          <span className="text-[10px] text-slate-500 font-semibold">{row.borrower?.email}</span>
+          <span className="font-medium text-stone-900">{row.borrower?.fullName || 'Test Borrower'}</span>
+          <span className="text-[11px] text-stone-400 font-normal">{row.borrower?.email}</span>
         </div>
       ),
     },
     {
-      header: 'Approved Principal',
-      accessor: (row: ApprovedLoan) => <span className="font-bold text-slate-100">Rs. {row.amount.toLocaleString('en-IN')}</span>,
+      header: 'Approved principal',
+      accessor: (row: ApprovedLoan) => <span className="font-medium text-stone-800">Rs. {row.amount.toLocaleString('en-IN')}</span>,
     },
     {
-      header: 'Repayment Sum',
-      accessor: (row: ApprovedLoan) => <span className="font-extrabold text-cyan-400">Rs. {row.totalRepayment.toLocaleString('en-IN')}</span>,
+      header: 'Repayment sum',
+      accessor: (row: ApprovedLoan) => <span className="font-medium text-stone-900">Rs. {row.totalRepayment.toLocaleString('en-IN')}</span>,
     },
     {
-      header: 'Sanctioned Date',
+      header: 'Sanctioned date',
       accessor: (row: ApprovedLoan) => (
-        <span className="text-slate-400 font-medium">
+        <span className="text-stone-500 font-normal">
           {new Date(row.sanctionedAt).toLocaleDateString('en-IN', {
             day: '2-digit',
             month: 'short',
@@ -86,29 +86,27 @@ export default function DisbursementPage() {
       className: 'text-right',
       accessor: (row: ApprovedLoan) => (
         <Button
-          variant="accent"
+          variant="primary"
           onClick={() => handleDisburse(row.id)}
           className="px-3 py-1.5 text-xs"
         >
-          Disburse Funds
+          Disburse funds
         </Button>
       ),
     },
   ];
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-lg font-bold text-slate-100 uppercase tracking-widest">
-            Loan Disbursement Board
-          </h1>
-          <p className="text-xs text-slate-400">Manage credit accounts in APPROVED state and dispatch principal bank transfers</p>
-        </div>
+    <div className="space-y-4">
+      <div>
+        <h1 className="text-[15px] font-medium text-stone-900">
+          Loan disbursement board
+        </h1>
+        <p className="text-[12px] text-stone-400">Manage credit accounts in APPROVED state and dispatch principal bank transfers</p>
       </div>
 
       {error && (
-        <div className="p-4 bg-rose-950/40 border border-rose-900/40 rounded-lg text-xs font-semibold text-rose-400 tracking-wide">
+        <div className="p-3 rounded bg-[#f5ebe8] border border-[#d4a898] text-[12px] font-medium text-[#7a2e20]">
           {error}
         </div>
       )}
@@ -123,8 +121,8 @@ export default function DisbursementPage() {
 
       {/* Pagination controls */}
       {totalPages > 1 && (
-        <div className="flex justify-between items-center bg-slate-900/20 px-6 py-4 rounded-xl border border-slate-800">
-          <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">
+        <div className="flex justify-between items-center bg-stone-50 border border-stone-200 px-4 py-3 rounded-lg shadow-card">
+          <span className="text-[11px] font-medium text-stone-500">
             Page {page} of {totalPages}
           </span>
           <div className="flex gap-2">
