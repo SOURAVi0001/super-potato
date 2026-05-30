@@ -45,24 +45,21 @@ export function Modal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-      <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 bg-stone-900/40 flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
+      <div className="bg-white border border-stone-200 rounded-lg w-full max-w-md shadow-[0_8px_30px_rgba(61,40,18,0.12)] overflow-hidden animate-in zoom-in-95 duration-150">
         
         {/* Header */}
-        <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-950/40">
-          <h3 className="font-semibold text-slate-100 text-base">{title}</h3>
-          <button
-            onClick={onClose}
-            className="text-slate-400 hover:text-white transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="px-5 py-4 border-b border-stone-100 flex items-center justify-between">
+          <h2 className="text-[15px] font-medium text-stone-900">{title}</h2>
+          <button onClick={onClose} className="text-stone-400 hover:text-stone-600 transition-colors">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
-        {/* Content */}
-        <div className="p-6">
+        {/* Body */}
+        <div className="px-5 py-4">
           <textarea
             value={value}
             onChange={(e) => {
@@ -70,20 +67,21 @@ export function Modal({
               if (error) setError(null);
             }}
             placeholder={placeholder}
-            rows={4}
-            className="w-full bg-slate-950 border border-slate-850 text-slate-200 placeholder-slate-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 hover:border-slate-800 transition-all resize-none"
+            rows={3}
+            className="w-full border border-stone-300 rounded bg-[#fdfcfa] text-[14px] text-stone-800 p-3 resize-none focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-600/15 transition-all duration-150 placeholder:text-stone-400"
           />
           {error && (
-            <p className="mt-2 text-xs text-rose-400 font-semibold tracking-wide">{error}</p>
+            <p className="mt-1.5 text-xs text-[#7a2e20] font-semibold">{error}</p>
           )}
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/40 flex justify-end gap-3">
+        <div className="px-5 py-3 border-t border-stone-100 flex justify-end gap-2 bg-stone-50/50">
           <Button
-            variant="ghost"
+            variant="secondary"
             onClick={onClose}
             disabled={loading}
+            className="text-xs"
           >
             Cancel
           </Button>
@@ -91,6 +89,7 @@ export function Modal({
             variant={submitVariant}
             isLoading={loading}
             onClick={handleConfirm}
+            className="text-xs"
           >
             {submitLabel}
           </Button>
