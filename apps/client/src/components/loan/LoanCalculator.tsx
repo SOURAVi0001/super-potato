@@ -10,35 +10,30 @@ export function LoanCalculator({ amount, tenureDays }: LoanCalculatorProps) {
   const calc = calculateLoan(amount, tenureDays);
 
   return (
-    <div className="w-full bg-slate-900/60 border border-slate-800 rounded-xl p-6 backdrop-blur-md">
-      <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
-        Live Calculation Panel
-      </h3>
+    <div className="bg-stone-50 border border-stone-200 rounded-lg p-5 shadow-sm">
+      <h3 className="text-[13px] font-medium text-stone-600 mb-4">Loan summary</h3>
 
       <div className="space-y-3">
-        <div className="flex justify-between items-center text-sm border-b border-slate-850 pb-2">
-          <span className="text-slate-400 font-medium">Principal Amount</span>
-          <span className="text-slate-100 font-semibold">Rs. {amount.toLocaleString('en-IN')}</span>
+        <div className="flex justify-between items-center">
+          <span className="text-[13px] text-stone-500">Principal amount</span>
+          <span className="text-[14px] text-stone-800 font-medium">Rs. {amount.toLocaleString('en-IN')}</span>
         </div>
 
-        <div className="flex justify-between items-center text-sm border-b border-slate-850 pb-2">
-          <span className="text-slate-400 font-medium">Interest Rate</span>
-          <span className="text-emerald-400 font-semibold">12% p.a. (Fixed)</span>
+        <div className="flex justify-between items-center">
+          <span className="text-[13px] text-stone-500">Interest (12% p.a. Fixed)</span>
+          <span className="text-[14px] text-stone-800">Rs. {calc.simpleInterest.toLocaleString('en-IN')}</span>
         </div>
 
-        <div className="flex justify-between items-center text-sm border-b border-slate-850 pb-2">
-          <span className="text-slate-400 font-medium">Tenure</span>
-          <span className="text-slate-100 font-semibold">{tenureDays} Days</span>
+        <div className="flex justify-between items-center">
+          <span className="text-[13px] text-stone-500">Tenure</span>
+          <span className="text-[14px] text-stone-800 font-medium">{tenureDays} Days</span>
         </div>
 
-        <div className="flex justify-between items-center text-sm border-b border-slate-850 pb-2">
-          <span className="text-slate-400 font-medium">Simple Interest</span>
-          <span className="text-indigo-400 font-semibold">Rs. {calc.simpleInterest.toLocaleString('en-IN')}</span>
-        </div>
+        <div className="h-px bg-stone-200 my-1" />
 
-        <div className="flex justify-between items-center text-base pt-2">
-          <span className="text-slate-300 font-bold">Total Repayment</span>
-          <span className="text-cyan-400 font-extrabold text-lg">
+        <div className="flex justify-between items-center">
+          <span className="text-[13px] text-stone-750 font-medium">Total repayment</span>
+          <span className="text-[17px] text-stone-900 font-medium">
             Rs. {calc.totalRepayment.toLocaleString('en-IN')}
           </span>
         </div>

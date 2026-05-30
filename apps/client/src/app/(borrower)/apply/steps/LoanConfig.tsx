@@ -37,12 +37,12 @@ export default function LoanConfig() {
     <div className="space-y-6">
       <div className="flex justify-between items-start">
         <div>
-          <h2 className="text-base font-bold text-slate-100 uppercase tracking-widest mb-1">
-            Configure Loan Request
+          <h2 className="text-[15px] font-medium text-stone-900 mb-1">
+            Configure loan request
           </h2>
-          <p className="text-xs text-slate-400">Step 3: Personalize principal amounts and tenure limits</p>
+          <p className="text-[12px] text-stone-400">Step 3: Personalize principal amounts and tenure limits</p>
         </div>
-        <div className="bg-indigo-950/30 border border-indigo-800/40 text-indigo-400 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-lg shadow-[0_0_10px_rgba(99,102,241,0.1)]">
+        <div className="bg-[#eaeff5] text-[#1e3d5c] border border-[#98b4cc] text-[11px] font-medium px-2 py-0.5 rounded shadow-sm">
           Slip Uploaded
         </div>
       </div>
@@ -50,9 +50,9 @@ export default function LoanConfig() {
       <div className="space-y-6">
         {/* Loan Amount Slider */}
         <div className="space-y-2">
-          <div className="flex justify-between items-center text-xs font-semibold uppercase tracking-wider text-slate-400">
-            <span>Loan Amount Limit</span>
-            <span className="text-sm font-extrabold text-slate-100">
+          <div className="flex justify-between items-center text-[13px] font-medium text-stone-600">
+            <span>Loan amount limit</span>
+            <span className="text-[14px] font-medium text-stone-900">
               Rs. {amount.toLocaleString('en-IN')}
             </span>
           </div>
@@ -64,9 +64,9 @@ export default function LoanConfig() {
             value={amount}
             onChange={(e) => setAmount(Number(e.target.value))}
             disabled={loading}
-            className="w-full cursor-pointer accent-cyan-400"
+            className="w-full cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] text-slate-500 font-semibold uppercase tracking-widest">
+          <div className="flex justify-between text-[11px] font-normal text-stone-400">
             <span>Rs. 50K</span>
             <span>Rs. 5L</span>
           </div>
@@ -74,9 +74,9 @@ export default function LoanConfig() {
 
         {/* Tenure Slider */}
         <div className="space-y-2">
-          <div className="flex justify-between items-center text-xs font-semibold uppercase tracking-wider text-slate-400">
-            <span>Repayment Tenure</span>
-            <span className="text-sm font-extrabold text-slate-100">{tenure} Days</span>
+          <div className="flex justify-between items-center text-[13px] font-medium text-stone-600">
+            <span>Repayment tenure</span>
+            <span className="text-[14px] font-medium text-stone-900">{tenure} Days</span>
           </div>
           <input
             type="range"
@@ -86,9 +86,9 @@ export default function LoanConfig() {
             value={tenure}
             onChange={(e) => setTenure(Number(e.target.value))}
             disabled={loading}
-            className="w-full cursor-pointer accent-cyan-400"
+            className="w-full cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] text-slate-500 font-semibold uppercase tracking-widest">
+          <div className="flex justify-between text-[11px] font-normal text-stone-400">
             <span>30 Days</span>
             <span>365 Days</span>
           </div>
@@ -98,25 +98,26 @@ export default function LoanConfig() {
         <LoanCalculator amount={amount} tenureDays={tenure} />
 
         {/* Wizard controls */}
-        <div className="pt-4 border-t border-slate-850 flex justify-between items-center gap-4">
+        <div className="pt-4 border-t border-stone-200 flex justify-between items-center gap-4">
           <Button
             variant="ghost"
             onClick={() => setStep(2)}
             disabled={loading}
             className="text-xs"
           >
-            <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-3.5 h-3.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            Back to Upload
+            Back to upload
           </Button>
 
           <Button
-            variant="accent"
+            variant="primary"
             isLoading={loading}
             onClick={handleApply}
+            className="text-xs"
           >
-            Submit & Apply
+            Submit & apply
           </Button>
         </div>
       </div>
