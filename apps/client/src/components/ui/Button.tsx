@@ -14,15 +14,15 @@ export function Button({
   disabled,
   ...props
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-lg px-5 py-2.5 text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'inline-flex items-center justify-center font-medium rounded transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-brand-600/15 disabled:opacity-40 disabled:cursor-not-allowed';
   
   const variants = {
-    primary: 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.3)] hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] active:scale-95 transform',
-    secondary: 'bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 hover:border-slate-600 active:scale-95 transform',
-    accent: 'bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] active:scale-95 transform',
-    outline: 'border border-slate-700 hover:bg-slate-800 hover:border-slate-600 text-slate-300 hover:text-white',
-    ghost: 'hover:bg-slate-800 text-slate-400 hover:text-white',
-    danger: 'bg-rose-600 hover:bg-rose-500 text-white shadow-[0_0_15px_rgba(225,29,72,0.3)] hover:shadow-[0_0_20px_rgba(225,29,72,0.5)] active:scale-95 transform',
+    primary: 'bg-brand-600 hover:bg-brand-800 active:scale-[0.99] text-[#fdf6ee] text-[13px] px-4 py-2 shadow-sm',
+    secondary: 'border border-stone-200 hover:border-stone-300 bg-transparent hover:bg-stone-50 text-stone-700 text-[13px] px-4 py-2',
+    accent: 'bg-brand-600 hover:bg-brand-800 active:scale-[0.99] text-[#fdf6ee] text-[13px] px-4 py-2 shadow-sm',
+    outline: 'border border-stone-200 hover:border-stone-300 bg-transparent hover:bg-stone-50 text-stone-700 text-[13px] px-4 py-2',
+    ghost: 'text-stone-500 hover:text-stone-700 hover:bg-stone-100/50 text-[13px] px-3 py-2',
+    danger: 'border border-[#d4a898] hover:bg-[#f5ebe8] bg-transparent text-[#7a2e20] text-[13px] px-4 py-2',
   };
 
   return (
