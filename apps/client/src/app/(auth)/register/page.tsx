@@ -42,30 +42,26 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950 px-4 relative overflow-hidden">
-      {/* Background radial gradients */}
-      <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-cyan-500/10 blur-[120px] pointer-events-none"></div>
-
-      <div className="w-full max-w-md z-10">
-        <div className="text-center mb-8">
-          <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center font-black text-white text-xl shadow-[0_0_20px_rgba(99,102,241,0.5)] mx-auto mb-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#faf9f7] px-4">
+      <div className="w-full max-w-sm">
+        <div className="text-center mb-6">
+          <div className="w-10 h-10 bg-brand-600 rounded flex items-center justify-center font-medium text-[#fdf6ee] text-lg shadow-sm mx-auto mb-3">
             L
           </div>
-          <h1 className="text-xl font-extrabold text-slate-100 tracking-wider uppercase mb-1">
+          <h1 className="text-[20px] font-medium text-stone-900 mb-1">
             Create Borrower Account
           </h1>
-          <p className="text-xs text-slate-400">Register profile to apply for instant loans</p>
+          <p className="text-[12px] text-stone-400 font-normal">Register profile to apply for instant loans</p>
         </div>
 
-        <div className="glass-panel p-8 rounded-2xl border border-slate-800 shadow-2xl">
+        <div className="bg-white border border-stone-200 rounded-lg p-8 shadow-card">
           {authError && (
-            <div className="mb-6 p-4 rounded-lg bg-rose-950/40 border border-rose-900/40 text-xs font-semibold text-rose-400 tracking-wide">
+            <div className="mb-4 p-3 rounded bg-[#f5ebe8] border border-[#d4a898] text-[12px] font-medium text-[#7a2e20]">
               {authError}
             </div>
           )}
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <Input
               label="Full Name"
               type="text"
@@ -104,10 +100,10 @@ export default function RegisterPage() {
           </form>
         </div>
 
-        <p className="text-center text-xs text-slate-500 mt-6">
+        <p className="text-center text-[13px] text-stone-500 mt-6">
           Already have an account?{' '}
-          <Link href="/login" className="text-indigo-400 hover:text-indigo-300 font-semibold underline">
-            Sign In
+          <Link href="/login" className="text-brand-600 hover:text-brand-850 font-medium underline">
+            Sign in
           </Link>
         </p>
       </div>
