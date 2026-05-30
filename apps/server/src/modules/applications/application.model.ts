@@ -31,6 +31,11 @@ const applicationSchema = new Schema(
     salarySlipUrl: {
       type: String,
     },
+    salarySlip: {
+      data: Buffer,
+      contentType: String,
+      filename: String,
+    },
     loanConfig: {
       amount: Number,
       tenureDays: Number,

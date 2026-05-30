@@ -54,7 +54,10 @@ export class ApplicationService {
     return { application: app, breResult };
   }
 
-  static async saveSalarySlip(userId: string, filename: string) {
+  static async saveSalarySlip(
+    userId: string,
+    file: { buffer: Buffer; mimetype: string; originalname: string }
+  ) {
     const app = await Application.findOne({ userId });
     if (!app) {
       const error: any = new Error('Application not found');
@@ -68,12 +71,24 @@ export class ApplicationService {
       throw error;
     }
 
-    const fileUrl = `uploads/${filename}`;
+    // 1. Persist the binary file stream in MongoDB
+    app.salarySlip = {
+      data: file.buffer,
+      contentType: file.mimetype,
+      filename: file.originalname,
+    };
+
+    // 2. Set client url to point directly to the database-driven download route
+    const fileUrl = `api/v1/applications/${app.id}/salary-slip`;
     app.salarySlipUrl = fileUrl;
     app.step = 3; // Move to configurations step
 
     await app.save();
     return { salarySlipUrl: fileUrl, application: app };
+  }
+
+  static async getSalarySlipById(id: string) {
+    return await Application.findById(id);
   }
 
   static async saveLoanConfig(userId: string, amount: number, tenureDays: number) {

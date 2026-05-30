@@ -6,6 +6,7 @@ import Table from '../../../components/ui/Table';
 import Button from '../../../components/ui/Button';
 import Modal from '../../../components/ui/Modal';
 import { LoanStatus } from '@lms/shared/src/types/loan.types';
+import { SERVER_URL } from '../../../lib/api';
 
 interface SanctionLoan {
   id: string;
@@ -102,7 +103,7 @@ export default function SanctionPage() {
       accessor: (row: SanctionLoan) => {
         // Fetch or guess static path from backend
         const slipPath = row.salarySlipUrl || `uploads/salary-slip-mock.pdf`;
-        const slipFullUrl = `http://localhost:5001/${slipPath}`;
+        const slipFullUrl = `${SERVER_URL}/${slipPath}`;
         
         return (
           <a

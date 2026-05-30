@@ -24,6 +24,12 @@ router.post(
   asyncWrapper(ApplicationController.saveSalarySlip)
 );
 
+router.get(
+  '/:id/salary-slip',
+  authenticate,
+  asyncWrapper(ApplicationController.getSalarySlip)
+);
+
 router.post(
   '/loan-config',
   authenticate,
