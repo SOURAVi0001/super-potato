@@ -26,7 +26,6 @@ router.post(
 
 router.get(
   '/:id/salary-slip',
-  authenticate,
   asyncWrapper(ApplicationController.getSalarySlip)
 );
 
