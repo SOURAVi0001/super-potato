@@ -2,7 +2,8 @@ import Loan from './loan.model';
 import User from '../users/user.model';
 import Application from '../applications/application.model';
 import Payment from '../payments/payment.model';
-import { LoanStatus, UserRole } from '@lms/shared/src/types/loan.types';
+import { LoanStatus } from '@lms/shared/src/types/loan.types';
+import { UserRole } from '@lms/shared/src/types/user.types';
 
 export class LoanService {
   static async getLoans(

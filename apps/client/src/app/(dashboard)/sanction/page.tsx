@@ -102,7 +102,7 @@ export default function SanctionPage() {
       accessor: (row: SanctionLoan) => {
         // Fetch or guess static path from backend
         const slipPath = row.salarySlipUrl || `uploads/salary-slip-mock.pdf`;
-        const slipFullUrl = `http://localhost:5000/${slipPath}`;
+        const slipFullUrl = `http://localhost:5001/${slipPath}`;
         
         return (
           <a

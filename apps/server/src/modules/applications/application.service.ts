@@ -152,14 +152,15 @@ export class ApplicationService {
     }
 
     // Create standard loan record in PENDING state
+    const loanConfig = app.loanConfig!;
     const loan = new Loan({
       applicationId: app._id,
       borrowerId: userId,
-      amount: app.loanConfig.amount,
-      tenureDays: app.loanConfig.tenureDays,
-      interestRate: app.loanConfig.interestRate,
-      simpleInterest: app.loanConfig.simpleInterest,
-      totalRepayment: app.loanConfig.totalRepayment,
+      amount: loanConfig.amount,
+      tenureDays: loanConfig.tenureDays,
+      interestRate: loanConfig.interestRate,
+      simpleInterest: loanConfig.simpleInterest,
+      totalRepayment: loanConfig.totalRepayment,
       status: LoanStatus.PENDING,
     });
 
