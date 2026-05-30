@@ -69,48 +69,39 @@ export default function PersonalDetails() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-base font-bold text-slate-100 uppercase tracking-widest mb-1">
-          Personal Details
+        <h2 className="text-[15px] font-medium text-stone-900 mb-1">
+          Personal details
         </h2>
-        <p className="text-xs text-slate-400">Step 1: Collect profile inputs for credit checks</p>
+        <p className="text-[12px] text-stone-400">Step 1: Collect profile inputs for credit checks</p>
       </div>
 
-      {/* BRE failure alert panel */}
+      {/* BRE failure alert panel — warm red palette, no neon */}
       {breResult && !breResult.passed && (
-        <div className="p-5 bg-rose-950/40 border border-rose-900/40 rounded-xl shadow-[0_0_30px_rgba(244,63,94,0.05)] animate-in fade-in slide-in-from-top-4 duration-300">
-          <div className="flex gap-3 items-start">
-            <div className="p-2 bg-rose-900/40 text-rose-400 rounded-lg shrink-0 border border-rose-800/60">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-            </div>
-            <div>
-              <h4 className="text-xs font-bold text-rose-300 uppercase tracking-widest mb-1.5">BRE Verification Rejected</h4>
-              <p className="text-xs text-slate-400 leading-normal mb-3">
-                Your profile fails to satisfy our active underwriting policy checks:
-              </p>
-              <ul className="space-y-1.5">
-                {breResult.failedRules.map((rule) => (
-                  <li key={rule} className="text-xs font-semibold text-rose-400 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-rose-500 rounded-full"></span>
-                    {BRE_RULE_MESSAGES[rule] || rule}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        <div className="bg-[#f5ebe8] border border-[#d4a898] rounded-lg p-5">
+          <h3 className="text-[14px] font-medium text-[#5c1e12] mb-1.5">Application not eligible</h3>
+          <p className="text-[13px] text-[#7a2e20] mb-3">
+            Your profile does not satisfy our active underwriting policy checks:
+          </p>
+          <ul className="space-y-2">
+            {breResult.failedRules.map((rule) => (
+              <li key={rule} className="flex items-start gap-2 text-[13px] text-[#7a2e20]">
+                <span className="mt-0.5 flex-shrink-0 text-[#c47a6a] font-bold">×</span>
+                <span>{BRE_RULE_MESSAGES[rule] || rule}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 
       {apiError && (
-        <div className="p-4 bg-rose-950/40 border border-rose-900/40 rounded-lg text-xs font-semibold text-rose-400 tracking-wide">
+        <div className="p-3 rounded bg-[#f5ebe8] border border-[#d4a898] text-[12px] font-medium text-[#7a2e20]">
           {apiError}
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Input
-          label="Full Name"
+          label="Full name"
           type="text"
           placeholder="e.g. Sourav Choudhary"
           error={errors.fullName?.message}
@@ -120,7 +111,7 @@ export default function PersonalDetails() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Input
-            label="PAN Number (10 chars)"
+            label="PAN number (10 chars)"
             type="text"
             placeholder="e.g. ABCDE1234F"
             error={errors.pan?.message}
@@ -129,7 +120,7 @@ export default function PersonalDetails() {
           />
 
           <Input
-            label="Date of Birth"
+            label="Date of birth"
             type="date"
             error={errors.dateOfBirth?.message}
             {...register('dateOfBirth')}
@@ -139,7 +130,7 @@ export default function PersonalDetails() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Input
-            label="Monthly Salary (INR)"
+            label="Monthly salary (INR)"
             type="number"
             placeholder="e.g. 55000"
             error={errors.monthlySalary?.message}
@@ -147,13 +138,13 @@ export default function PersonalDetails() {
             disabled={loading}
           />
 
-          <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-              Employment Mode
+          <div className="flex flex-col gap-1">
+            <label className="text-[13px] text-stone-600 font-medium">
+              Employment mode
             </label>
             <select
-              className={`w-full bg-slate-900/60 border border-slate-800 text-slate-100 placeholder-slate-500 rounded-lg px-4 py-2.5 text-sm transition-all duration-300 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 hover:border-slate-700 ${
-                errors.employmentMode ? 'border-rose-500/70 focus:border-rose-500 focus:ring-rose-500/20' : ''
+              className={`w-full bg-[#fdfcfa] border border-stone-300 text-stone-800 rounded px-3 py-2 text-sm focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-600/15 hover:border-stone-400 transition-all duration-150 ${
+                errors.employmentMode ? 'border-[#d4a898] focus:border-[#7a2e20]' : ''
               }`}
               {...register('employmentMode')}
               disabled={loading}
@@ -164,7 +155,7 @@ export default function PersonalDetails() {
               <option value={EmploymentMode.UNEMPLOYED}>Unemployed</option>
             </select>
             {errors.employmentMode && (
-              <p className="mt-1.5 text-xs text-rose-400 font-semibold tracking-wide">
+              <p className="text-[12px] text-[#7a2e20] mt-0.5">
                 {errors.employmentMode.message}
               </p>
             )}
