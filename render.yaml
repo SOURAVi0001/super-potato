@@ -1,0 +1,50 @@
+# render.yaml — Monorepo Blueprint for Render Deployment
+# Ref: https://render.com/docs/yaml-spec
+
+services:
+  # 1. Backend REST API Service (Express + Mongoose)
+  - type: web
+    name: lms-backend
+    env: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install && npm run build --workspace=apps/server
+    startCommand: npm run start:server
+    # Mount persistent storage for PDF salary slip uploads
+    disk:
+      name: lms-uploads
+      mountPath: /opt/render/project/src/apps/server/uploads
+      sizeGB: 1
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false # Please set your MongoDB Atlas connection string in Render Dashboard
+      - key: JWT_ACCESS_SECRET
+        generateValue: true # Render will automatically generate a secure secret
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        fromService:
+          name: lms-frontend
+          type: web
+          property: host
+
+  # 2. Frontend Client Service (Next.js 14)
+  - type: web
+    name: lms-frontend
+    env: node
+    plan: free
+    rootDir: .
+    buildCommand: npm install && npm run build --workspace=apps/client
+    startCommand: npm run start:client
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          name: lms-backend
+          type: web
+          property: host
